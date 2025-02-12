@@ -3,11 +3,12 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
-#include <SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 #include <imgui.h>
 
 #include <string>
 #include <utility>
+#include <chrono>
 
 #include "Naive/Astar.h"
 #include "Naive/Flowfield.h"

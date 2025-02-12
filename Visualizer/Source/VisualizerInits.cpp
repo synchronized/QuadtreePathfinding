@@ -1,12 +1,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
-#include <SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
 #include <spdlog/spdlog.h>
 
 #include "Visualizer.h"
+
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 Visualizer::Visualizer(int w, int h, int gridSize, int step)
 	: map(Map(w, h, gridSize, step)) {}
@@ -107,8 +111,15 @@ int Visualizer::InitImgui()
 	auto& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  // Enable Gamepad Controls
-	io.Fonts->AddFontFromFileTTF((options.fontsPath + "/Roboto-Medium.ttf").c_str(), 18);
-	largeFont = io.Fonts->AddFontFromFileTTF((options.fontsPath + "/Roboto-Medium.ttf").c_str(), 24);
+
+	auto fontPath = options.fontsPath + "/Roboto-Medium.ttf";
+	if (!fs::exists(fontPath))
+	{
+		spdlog::error("font not exists fontPath:{}", fontPath);
+		return 1;
+	}
+	io.Fonts->AddFontFromFileTTF(fontPath.c_str(), 18);
+	largeFont = io.Fonts->AddFontFromFileTTF(fontPath.c_str(), 24);
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
 	// ImGui::StyleColorsLight();

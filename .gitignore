@@ -5,3 +5,5 @@ build
 Build
 .env
 imgui.ini
+
+Visualizer/bin

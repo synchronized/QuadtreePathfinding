@@ -58,7 +58,7 @@ void Visualizer::RenderImguiPanelSectionCommon()
 	{
 		HandleStartDrawBuildings();
 	}
-	ImGui::PopStyleColor(3); // rollback color
+	ImGui::PopStyleColor(); // rollback color
 	if (ImGui::IsItemHovered())
 	{
 		ImGui::BeginTooltip();
@@ -74,7 +74,7 @@ void Visualizer::RenderImguiPanelSectionCommon()
 	{
 		HandleStartDrawWater();
 	}
-	ImGui::PopStyleColor(3); // rollback color
+	ImGui::PopStyleColor(); // rollback color
 	if (ImGui::IsItemHovered())
 	{
 		ImGui::BeginTooltip();

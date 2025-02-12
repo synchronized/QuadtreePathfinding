@@ -4,6 +4,10 @@
 
 #include "Visualizer.h"
 
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 CommandlineOptions options;
 
 // Parse options from command line.
@@ -65,6 +69,11 @@ int ParseCommandlineOptions(int argc, char* argv[])
 	{
 		spdlog::error("w or h is too large");
 		return 2;
+	}
+	if (!fs::exists(options.fontsPath))
+	{
+		spdlog::error("--fonts-dir-path not exists fontsPath:{}", options.fontsPath);
+		return 3;
 	}
 	return 0;
 }

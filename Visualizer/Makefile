@@ -7,16 +7,15 @@ cmake:
 	@if [ ! -d Build ]; then \
 		$(MAKE) install; \
 	fi
-	cd Build && cmake .. \
+	cmake -B Build \
         -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+        -DCMAKE_BUILD_TYPE=Release 
 
 build:
 	@if [ ! -d Build ]; then \
 		$(MAKE) cmake; \
 	fi
-	make -C Build
+	cmake --build Build
 
 .PHONY: build
 

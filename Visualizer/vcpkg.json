@@ -1,0 +1,11 @@
+{
+  "name": "quadtree-pathfinding",
+  "version": "1.0",
+  "dependencies": [
+    "argparse",
+    "sdl2",
+    "sdl2-ttf",
+    "spdlog",
+    "fmt"
+  ]
+}

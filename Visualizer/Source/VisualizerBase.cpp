@@ -64,7 +64,10 @@ Map::~Map()
 void Map::Build()
 {
 	// Build QuadtreeMapX.
-	auto					   stepf = (step == -1) ? [](int z) -> int { return z / 8 + 1; } : nullptr;
+	QDPF::StepFunction stepf = nullptr;
+	if (step == -1) {
+		stepf = [](int z) -> int { return z / 8 + 1; };
+	}
 	QDPF::QuadtreeMapXSettings settings{
 		{ 1, Terrain::Land },
 		{ 2, Terrain::Land },
